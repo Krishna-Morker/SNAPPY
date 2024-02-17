@@ -1,7 +1,7 @@
 import React,{useState, useEffect} from "react";
 import axios from 'axios';
 import { getAllUsers } from '../utils/APIRoutes';
-import ConnectedUser from "../components/ConnectedUser/index";
+import ConnectedUser from "./ConnectedUser/Index";
 import styled from "styled-components";
 import {addConnection} from "../utils/APIRoutes"
 
