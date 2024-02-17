@@ -1,0 +1,100 @@
+.topbar-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 50px; /* Adjusted topbar height */
+  background-color: #0077B5;
+  color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.app-logo {
+  height: 24px;
+  margin-right: 400px; /* Adjust spacing between app logo and icons */
+  cursor: pointer;
+}
+
+.react-icons {
+  display: flex;
+  align-items: center;
+}
+
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 45px; /* Adjust spacing between icons */
+}
+
+.react-icon {
+  margin-bottom: 4px;
+  color: #fff;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.react-icon:hover {
+  color: #000000;
+}
+
+.user-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 0px; /* Adjust spacing between user logo and icons */
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.user-logo:hover {
+  transform: scale(1.1);
+}
+
+.icon-name {
+  font-size: 10px; /* Adjusted font size */
+}
+
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+}
+
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 3px;
+  max-width: 600px;
+  min-width: 300px;
+}
+
+/* Responsive Styles */
+
+@media (max-width: 1073px) {
+  .topbar-main {
+    padding: 6px 20px; /* Adjusted padding for smaller screens */
+  }
+
+  .app-logo {
+    margin-right: 20px; /* Adjust spacing for smaller screens */
+  }
+
+  .icon-container {
+    margin-right: 20px; /* Adjust spacing between icons for smaller screens */
+  }
+}
+

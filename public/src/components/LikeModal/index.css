@@ -1,0 +1,52 @@
+.your-modal-container {
+    max-width: 400px;
+    margin-top: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-bottom: 0px;
+    .active{
+        background-color: #e9e6e6;
+    }
+  }
+  
+  .main{
+    height: 450px;
+  }
+
+  .userName{
+    font-size: 15px;
+  }
+
+  .buttons {
+    display: flex;
+    /* justify-content: space-between; */
+    /* margin-top: 20px; */
+  }
+  
+  .button {
+    padding: 10px;
+    margin-right: 10px;
+    background-color: whitesmoke;
+    color: #151414;
+    width: 80px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .button:hover {
+    background-color: #dcdbdb;
+  }
+  
+  .icon{
+    background-size: cover; 
+    width: 30px; 
+    height: 30px; 
+    cursor: pointer;
+  }
+
+  .count {
+    display: inline-block; 
+    vertical-align: bottom; 
+    padding-bottom: 5px; 
+  }
