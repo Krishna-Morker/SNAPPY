@@ -16,8 +16,7 @@ const {
   setAvatarImage,
   addReaction,
   removeReaction,
-  addConnection,
-  //addComment
+  addConnection
 } = require("../controllers/userController");
 
 
@@ -33,7 +32,6 @@ router.post("/addConnection/:id",addConnection);
 router.post("/setAvatarImage",setAvatarImage);
 router.post("/addReaction",addReaction);
 router.post("/removeReaction",removeReaction);
-//router.post("/addComment",addComment);
 router.get("/logout/:id", logOut);
 router.get("/SearchUsers/:id", SearchUsers);
 router.get("/getUserById/:id",getUserById);

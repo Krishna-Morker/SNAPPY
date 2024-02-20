@@ -57,6 +57,7 @@ module.exports.getAllUsers = async (req, res, next) => {
       "username",
       "avatarImage",
       "_id",
+      "connections"
     ]);
     return res.json(users);
   } catch (ex) {
@@ -272,12 +273,13 @@ module.exports.removeReaction = async(req,res,next) => {
 }
 
 module.exports.addConnection = async(req,res,next) => {
-  const {id } = req.params.id;
+  
   try{
-    const {e}=req.body;
-    const data = await Post.findOne({_id:id});
-    data.connections = data.connections({e},...connections);
-    await data.save();
+    const {id } = req.params;
+    const {e}=req.body;  
+    const data = await User.findOne({_id:id});
+    data.connections.push(e);
+   await data.save();
     return res.json(data);
   }catch(error){
     console.log(error);

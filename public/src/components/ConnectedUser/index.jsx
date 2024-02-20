@@ -6,10 +6,10 @@ export default function index( {
     user,
     getCurrentUser
 }) {
-  const navigate = useNavigate();
+ // const navigate = useNavigate();
 
   return (
-    <div className='grid-child ' onClick={()=>navigate(`/profile/${user.username}`)}>
+    <div className='grid-child ' onClick={()=>getCurrentUser(user._id)}>
         <p>{user.email}</p>
         <p>{user.headline}</p>
     </div>

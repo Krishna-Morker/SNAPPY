@@ -124,7 +124,9 @@ export default function ProfileCard( { onEdit , currentUser ,guestUser ,setCurre
               <img className="profile-image" src={user ? user.avatarImage :process.env.REACT_APP_DEFAULT_AVATAR_IMAGE} onClick={()=>setModalOpen(true)}/>
               {user && <h3 className="userName">{user.username}</h3>}
               {user && user.headline && <p className="heading">{user.headline}</p>}
-
+              
+              {user && (editButton) ?  <></> : <p className="">hii</p> }
+              
               {user && (user.city || user.country) && (
                 <p className="location">
                   {user.city && user.country
