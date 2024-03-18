@@ -12,6 +12,7 @@ export const sendPostRoute=`${host}/api/auth/uploadPost`;
 export const getAllPost=`${host}/api/auth/getAllPost`;
 export const getAllUsers=`${host}/api/auth/getAllUser`;
 export const addConnection=`${host}/api/auth/addConnection`;
+export const checkConnection=`${host}/api/auth/checkConnection`;
 export const getProfilePost=`${host}/api/auth/getProfilePost`;
 export const updateProfile=`${host}/api/auth/updateProfile`;
 export const checkUsernameValidity=`${host}/api/auth/checkUsernameValidity`;
