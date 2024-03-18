@@ -210,6 +210,19 @@ module.exports.updateProfile = async (req,res,next) => {
   }
 }
 
+module.exports.updateProfile = async (req,res,next) => {
+  try{
+    const data = req.body;
+    const id = req.params.id;
+    const updatedData = await User.findByIdAndUpdate(id,data,{new:true});
+    
+    return res.json(updatedData);
+  }catch(error)
+  {
+    next(error);
+  }
+}
+
 module.exports.checkUsernameValidity = async (req,res,next) => {
   try{
     const checkUsername = req.params.checkUsername;
@@ -283,6 +296,24 @@ module.exports.addConnection = async(req,res,next) => {
     return res.json(data);
   }catch(error){
     console.log(error);
+    next(error);
+  }
+}
+
+module.exports.checkConnection = async(req,res,next) => {
+  
+  try{
+    const {id} = req.params;
+    const {guestUser}=req.body; 
+   
+    const data = await User.findOne({_id:id});
+    data.connections.map((user)=>{    
+    if(user==guestUser._id) return res.json(user);
+    })
+
+    return res.json(false);
+  }catch(error){
+   
     next(error);
   }
 }
