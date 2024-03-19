@@ -3,10 +3,10 @@ import axios from 'axios';
 import { getAllUsers } from '../utils/APIRoutes';
 import ConnectedUser from "./ConnectedUser/Index";
 import styled from "styled-components";
-import {getConnectedUsers} from "../utils/APIRoutes"
+import {notConnectedUsers} from "../utils/APIRoutes"
 import { useNavigate } from "react-router-dom";
 
-function ConnectionsComponent( {currentUser} ) {
+function NotConnected( {currentUser} ) {
     const [users,setUsers]=useState([]);
     const navigate = useNavigate();
     
@@ -17,7 +17,7 @@ function ConnectionsComponent( {currentUser} ) {
     useEffect(async() => {
       if(currentUser)
       {
-          const response = await axios.get(`${getConnectedUsers}/${currentUser._id}`);
+          const response = await axios.get(`${notConnectedUsers}/${currentUser._id}`);
           setUsers(response.data);      
         }
       }, [currentUser]);
@@ -35,7 +35,7 @@ function ConnectionsComponent( {currentUser} ) {
   )
 }
 
-export default ConnectionsComponent
+export default NotConnected
 
 
 const Connect = styled.div`

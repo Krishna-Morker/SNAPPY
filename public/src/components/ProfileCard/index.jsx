@@ -7,6 +7,7 @@ import { HiOutlinePencil } from "react-icons/hi";
 import { getProfilePost, getSignature , setAvatarImage } from "../../utils/APIRoutes";
 import {addConnection} from "../../utils/APIRoutes"
 import {checkConnection} from "../../utils/APIRoutes"
+import {remConnection} from "../../utils/APIRoutes"
 
 export default function ProfileCard( { onEdit , currentUser ,guestUser ,setCurrentUser } ){
     const [user,setUser] = useState(undefined);
@@ -18,12 +19,21 @@ export default function ProfileCard( { onEdit , currentUser ,guestUser ,setCurre
     const [connected,isconnected]= useState(false);
     
     useEffect(async() => {
-      const data=await axios.get(`${checkConnection}/${currentUser._id}`, { guestUser } );
-      console.log(data);
-      if(data){
+      if(guestUser!=undefined){
+     
+      const data=await axios.post(`${checkConnection}/${currentUser._id}`, { e:guestUser._id} );
+     //   console.log(data);
+       if(data.data==true){
         isconnected(true);
       }
-      },[guestUser,user,currentUser]);
+    }
+      },[user]);
+
+      const remConn =async(e) => {
+        const data= await axios.post(`${remConnection}/${currentUser._id}`, { e } );
+        //console.log(data);
+     isconnected(false);
+      }
 
     const handleImageChange = (e) => {
       const selectedImage = e.target.files[0];
@@ -143,7 +153,7 @@ export default function ProfileCard( { onEdit , currentUser ,guestUser ,setCurre
               {user && user.headline && <p className="heading">{user.headline}</p>}
               
               {user && (editButton) ?  <></> : 
-              ((connected) ? <button class="connect-button">Connected</button> : <button class="connect-button" onClick={() => addConn(guestUser._id) }>Connect</button>) }
+              ((connected) ? <button class="connected-button"  onClick={() => remConn(guestUser._id)} >Connected</button> : <button class="connect-button" onClick={() => addConn(guestUser._id) }>Connect</button>) }
               
               {user && (user.city || user.country) && (
                 <p className="location">
