@@ -5,15 +5,38 @@ import ConnectedUser from "./ConnectedUser/Index";
 import styled from "styled-components";
 import {notConnectedUsers} from "../utils/APIRoutes"
 import { useNavigate } from "react-router-dom";
+import { Space, Spin } from "antd";
+import Topbar from "../components/Topbar/index";
 
-function NotConnected( {currentUser} ) {
+function NotConnected( ) {
+  const [currentUser,setCurrentUser]=useState([]);
     const [users,setUsers]=useState([]);
+    const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
     
     const  getCurrentUser= async(e) => {
       navigate(`/profile/${e}`);
     }
-    
+    useEffect(() => {
+      const fetchData = async () => {
+        if (!localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)) {
+          navigate("/login");
+        } else {
+          setLoading(false);
+          setCurrentUser(
+            await JSON.parse(
+              localStorage.getItem(process.env.REACT_APP_LOCALHOST_KEY)
+            )
+          );
+          
+        }
+      };
+  
+      fetchData();
+    }, []);
+
+
+
     useEffect(async() => {
       if(currentUser)
       {
@@ -23,6 +46,19 @@ function NotConnected( {currentUser} ) {
       }, [currentUser]);
 
   return (
+    loading ? (
+      <Loader>
+      <div className="loader">
+      <p>Loading..Please Wait..</p>
+      <Space size="middle">
+        <Spin size="large" />
+      </Space>
+      
+    </div>
+    </Loader>
+    ) 
+    : (<>
+    <Topbar currentUser={currentUser} />
     <Connect>
     <div className="connections-main">
         {users && users.map((user)=>{    
@@ -32,25 +68,49 @@ function NotConnected( {currentUser} ) {
         })}
     </div>
     </Connect>
-  )
+    </>
+    )
+    )
+  
 }
 
 export default NotConnected
 
+const Loader = styled.div`
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    gap: 10px;
+  
+    p {
+      font-family: system-ui;
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.9);
+      font-size: 20px;
+    }
+  }
+`;
+
 
 const Connect = styled.div`
 .connections-main {
-    display: grid;
-    grid-template-columns: auto auto;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    text-align: center;
-    margin: 30px;
-    border: 1px solid #bbbbbb;
-    background-color: white;
-    border-radius: 10px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 60px;
+  justify-content: center;
+  align-items: center;
+  padding-top:40px;
+  padding-bottom:70px;
+  text-align: center;
+
+  border: 1px solid #bbbbbb;
+  background-color: white;
+  border-radius: 10px;
+  max-height: 700px; /* Set maximum height */
+  overflow-y: auto; /* Enable vertical scrolling */
     .grid-child {
       border: 1px solid #bbbbbb;
       width: 250px;
@@ -75,12 +135,14 @@ const Connect = styled.div`
   
       .name {
         font-family: system-ui;
+        margin-top:10px;
         font-size: 16px;
         font-weight: 600;
       }
   
       .headline {
-        margin-top: -15px;
+        padding-top:60px;
+        margin-top: 100px;
         font-family: system-ui;
         font-size: 15px;
         font-weight: 400;

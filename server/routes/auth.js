@@ -17,7 +17,10 @@ const {
   addReaction,
   removeReaction,
   addConnection,
-  checkConnection
+  checkConnection,
+  remConnection,
+  getConnectedUsers,
+  notConnectedUsers
 } = require("../controllers/userController");
 
 
@@ -30,7 +33,10 @@ router.post("/uploadPost/:id",uploadPost);
 router.post("/updateProfile/:id",updateProfile);
 router.post("/getSignature",getSignature);
 router.post("/addConnection/:id",addConnection);
-router.get("/checkConnection/:id",checkConnection);
+router.post("/checkConnection/:id",checkConnection);
+router.post("/remConnection/:id",remConnection);
+router.get("/notConnectedUsers/:id",notConnectedUsers);
+router.get("/getConnectedUsers/:id",getConnectedUsers);
 router.post("/setAvatarImage",setAvatarImage);
 router.post("/addReaction",addReaction);
 router.post("/removeReaction",removeReaction);
